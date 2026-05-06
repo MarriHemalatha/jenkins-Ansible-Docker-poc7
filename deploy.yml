@@ -1,0 +1,12 @@
+- hosts: web
+  become: true
+
+  tasks:
+    - name: Remove old container
+      shell: docker rm -f myapp || true
+
+    - name: Build Docker image
+      shell: docker build -t myapp .
+
+    - name: Run container
+      shell: docker run -d -p 80:80 --name myapp myapp
