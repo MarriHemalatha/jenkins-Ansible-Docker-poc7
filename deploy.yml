@@ -4,8 +4,5 @@
     - name: Remove old container
       shell: docker rm -f myapp || true
 
-    - name: Build Docker image
-      shell: docker build -t myapp .
-
     - name: Run container
-      shell: docker run -d -p 80:80 --name myapp myapp
+      shell: docker run -d -p 80:80 --name myapp -v $(pwd):/usr/local/apache2/htdocs/ httpd:2.4
